@@ -4,6 +4,7 @@ using System;
 public partial class Infected : Entity
 {	
 	private float speed = 100.0f;
+	public Timer timer;
 	public GameManager manager;
 	
 	[Export]
@@ -12,6 +13,9 @@ public partial class Infected : Entity
 	public override void _Ready() 
 	{
 		manager = (GameManager)GetParent();
+		timer = GetNode<Timer>("Timer");
+		timer.Start();
+		GD.Print(timer != null);
 		GD.Print(manager != null);
 		GD.Print(raycast != null);
 	}
@@ -44,5 +48,10 @@ public partial class Infected : Entity
 				
 			}
 		}
+	}
+	
+	private void _on_timer_timeout()
+	{
+		QueueFree();
 	}
 }
