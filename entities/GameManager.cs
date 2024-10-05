@@ -18,7 +18,7 @@ public partial class GameManager : Node2D
 				p.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
 				p.setId(idCnt++);
 				AddChild(p);
-				p.Modulate = new Color(0.0f, 0.0f, 1.0f);	
+				p.Modulate = new Color(0.0f, 0.0f, 1.0f);
 			}
 			else 
 			{
@@ -26,7 +26,7 @@ public partial class GameManager : Node2D
 				g.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
 				g.setId(idCnt++);
 				AddChild(g);
-				g.Modulate = new Color(1.0f, 0.0f, 0.0f);	
+				g.Modulate = new Color(1.0f, 1.0f, 0.0f);
 			}
 		}
 		Infected inf = (Infected)ResourceLoader.Load<PackedScene>("res://entities/infected.tscn").Instantiate();
@@ -40,7 +40,7 @@ public partial class GameManager : Node2D
 		Array<Node> children = GetChildren();
 		for (int i = 0; i < children.Count; ++i)
 		{
-			if (children[i].Name == "Camera2D") continue;
+			if (children[i].Name == "Camera2D" || children[i].Name == "CityMap") continue;
 			
 			if (((Entity) children[i]).getId() == idToInfect)
 			{

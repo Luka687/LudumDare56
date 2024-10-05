@@ -7,6 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x46xp"]
 
 [node name="Infected" type="CharacterBody2D" node_paths=PackedStringArray("raycast")]
+z_index = -1
 script = ExtResource("1_3rgel")
 raycast = NodePath("RayCast2D")
 

@@ -50,6 +50,10 @@ public partial class Infected : Entity
 		}
 	}
 	
+	public void kill(){
+		QueueFree();
+	}
+	
 	private void _on_timer_timeout()
 	{
 		QueueFree();

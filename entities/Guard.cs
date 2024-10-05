@@ -12,4 +12,12 @@ public partial class Guard : Entity
 	{
 		
 	}
+
+	private void _on_light_area_body_entered(Node2D body)
+	{
+		if (body is Infected){
+			((Infected) body).kill();
+		}
+	}
+	
 }
