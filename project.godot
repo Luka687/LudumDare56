@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Ludum Dare 56"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+run/main_scene="res://game_manager.tscn"
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="Ludum Dare 56"
 
 [rendering]
 
