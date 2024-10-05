@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bffqyf5qqfcvt"]
+
+[ext_resource type="Script" path="res://entities/Guard.cs" id="1_pnbeo"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_34v8m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nbwb"]
+
+[node name="Guard" type="CharacterBody2D"]
+script = ExtResource("1_pnbeo")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(20, 20)
+mesh = SubResource("QuadMesh_34v8m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4nbwb")
