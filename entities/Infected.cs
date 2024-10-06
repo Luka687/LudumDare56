@@ -44,6 +44,27 @@ public partial class Infected : Entity
 		Vector2 vel = Velocity;
 		Vector2 dir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down"); 
 		
+		SpriteDir s;
+		
+		if(dict.TryGetValue(dir, out s)){
+			switch (s){
+				case SpriteDir.UP:
+					animPlayer.Play("up_walk");
+					break;
+				case SpriteDir.DOWN:
+					animPlayer.Play("down_walk");
+					break;
+				case SpriteDir.LEFT:
+					animPlayer.FlipH = true;
+					animPlayer.Play("right_walk");
+					break;
+				case SpriteDir.RIGHT:
+					animPlayer.FlipH = false;
+					animPlayer.Play("right_walk");
+					break;
+			}			
+		}
+		
 		inSight();
 		
 		raycast.GlobalPosition = this.GlobalPosition;
