@@ -26,19 +26,14 @@ public partial class GameManager : Node2D
 			//}
 			//else 
 			//{
-				//Guard g = (Guard)ResourceLoader.Load<PackedScene>("res://entities/guard.tscn").Instantiate();
-				//g.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
-				//g.setId(idCnt++);
-				//AddChild(g);
-				//g.Modulate = new Color(1.0f, 1.0f, 0.0f);
-				//g.Scale = new Vector2(3.0f, 3.0f);
 			//}
 		//}
-		Infected inf = (Infected)ResourceLoader.Load<PackedScene>("res://entities/infected.tscn").Instantiate();
-		inf.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f); 
-		AddChild(inf);
-		inf.setId(idCnt++);
-		inf.Scale = new Vector2(3.0f, 3.0f);
+		Guard g = (Guard)ResourceLoader.Load<PackedScene>("res://entities/guard.tscn").Instantiate();
+		g.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
+		g.setId(idCnt++);
+		AddChild(g);
+		g.Modulate = new Color(1.0f, 1.0f, 0.0f);
+		g.Scale = new Vector2(3.0f, 3.0f);
 	}
 	
 	public void infect(uint idToInfect)
