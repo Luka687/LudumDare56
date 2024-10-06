@@ -13,27 +13,26 @@ public partial class GameManager : Node2D
 	public override void _Ready()
 	{	
 		rand = new Random();
-		//for (int i = 0; i < 10; ++i) 
-		//{
-			//if (i % 2 == 0)
-			//{
-				//Peasant p = (Peasant)ResourceLoader.Load<PackedScene>("res://entities/peasant.tscn").Instantiate();
-				//p.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
-				//p.setId(idCnt++);
-				//AddChild(p);
-				//p.Modulate = new Color(0.0f, 0.0f, 1.0f);
-				//p.Scale = new Vector2(3.0f, 3.0f);
-			//}
-			//else 
-			//{
-			//}
-		//}
-		Guard g = (Guard)ResourceLoader.Load<PackedScene>("res://entities/guard.tscn").Instantiate();
-		g.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
-		g.setId(idCnt++);
-		AddChild(g);
-		g.Modulate = new Color(1.0f, 1.0f, 0.0f);
-		g.Scale = new Vector2(3.0f, 3.0f);
+		
+		// TODO: manually go through children and assign them IDs
+		//Guard g = (Guard)ResourceLoader.Load<PackedScene>("res://entities/guard.tscn").Instantiate();
+		//g.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
+		//g.setId(idCnt++);
+		//AddChild(g);
+		//g.Scale = new Vector2(3.0f, 3.0f);
+		//
+		//
+		//Peasant p1 = (Peasant)ResourceLoader.Load<PackedScene>("res://entities/peasant.tscn").Instantiate();
+		//p1.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
+		//p1.setId(idCnt++);
+		//AddChild(p1);
+		//p1.Scale = new Vector2(3.0f, 3.0f);
+		//
+		//Peasant p2 = (Peasant)ResourceLoader.Load<PackedScene>("res://entities/peasant.tscn").Instantiate();
+		//p2.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
+		//p2.setId(idCnt++);
+		//AddChild(p2);
+		//p2.Scale = new Vector2(3.0f, 3.0f);
 	}
 	
 	public void infect(uint idToInfect)
