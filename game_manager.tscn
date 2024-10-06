@@ -1,7 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsjeeyejpgark"]
+[gd_scene load_steps=13 format=3 uid="uid://bsjeeyejpgark"]
 
 [ext_resource type="Script" path="res://entities/GameManager.cs" id="1_mfd5n"]
 [ext_resource type="Texture2D" uid="uid://tigmiwbk3jhn" path="res://assets/tileset.png" id="2_ebqaw"]
+[ext_resource type="PackedScene" uid="uid://knk7dgj36fp8" path="res://entities/guard.tscn" id="3_p4032"]
+[ext_resource type="PackedScene" uid="uid://n6hvmn4bmrlm" path="res://entities/peasant.tscn" id="4_vnaxd"]
+[ext_resource type="PackedScene" uid="uid://cdiv86e0h20xa" path="res://entities/infected.tscn" id="5_x78l5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xcv8r"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_ibcda"]
+font_size = 40
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwvg4"]
 texture = ExtResource("2_ebqaw")
@@ -16,13 +25,205 @@ texture_region_size = Vector2i(512, 512)
 tile_size = Vector2i(512, 512)
 sources/0 = SubResource("TileSetAtlasSource_cwvg4")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6tgw"]
+size = Vector2(2064.5, 518)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7axr"]
+size = Vector2(505.25, 521.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwfby"]
+size = Vector2(528, 499)
+
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_mfd5n")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
+[node name="Panel" type="Panel" parent="Camera2D"]
+self_modulate = Color(1, 1, 1, 0.396078)
+z_index = 1
+offset_left = -1149.0
+offset_top = -650.0
+offset_right = 1160.0
+offset_bottom = 657.0
+
+[node name="TimeLeft" type="Label" parent="Camera2D/Panel"]
+z_index = 1
+layout_mode = 0
+offset_right = 183.0
+offset_bottom = 56.0
+text = "D"
+label_settings = SubResource("LabelSettings_xcv8r")
+
+[node name="GameTimeLeft" type="Label" parent="Camera2D/Panel"]
+z_index = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 69.0
+offset_right = 208.0
+offset_bottom = 130.0
+label_settings = SubResource("LabelSettings_ibcda")
+
 [node name="CityMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_0lvnl")
 format = 2
-layer_0/tile_data = PackedInt32Array(-2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -65534, 0, 0, 2, 0, 0, -196608, 0, 0, -262144, 0, 0, -262143, 0, 0, -196609, 0, 0, -327680, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196607, 0, 0, 196608, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -196604, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -196602, 0, 0, -262138, 0, 0, -327674, 0, 0, -393210, 0, 0, -393211, 0, 0, -393212, 0, 0, -131065, 0, 0, -131064, 0, 0, -65528, 0, 0, 8, 0, 0, -65530, 0, 0, -65533, 0, 0, -65532, 0, 0, 65543, 0, 0, 65544, 0, 0, 131079, 0, 0, -65527, 0, 0, -131062, 0, 0, -65526, 0, 0, 10, 0, 0, 196606, 0, 0, 196605, 0, 0, 196604, 0, 0, 196603, 0, 0, 131064, 0, 0, 65528, 0, 0, -8, 0, 0, -3, 0, 0, -4, 0, 0, -5, 0, 0, -6, 0, 0, -7, 0, 0, -131079, 0, 0, -131080, 0, 0, -65544, 0, 0, -131078, 0, 0, -65542, 0, 0, -196615, 0, 0, -262151, 0, 0, -262150, 0, 0, -262148, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -9, 0, 0, 131074, 0, 0, 196610, 0, 0, 262144, 0, 0, -393216, 0, 0, -393215, 0, 0, -327681, 0, 0, -458752, 0, 0, -524288, 0, 0, 131075, 0, 0, 262142, 0, 0, 327678, 0, 0, 327679, 0, 0, 262145, 0, 0, 262146, 0, 0, 327680, 0, 0, 65540, 0, 0, 65541, 0, 0, 131076, 0, 0, -65540, 0, 0, -131076, 0, 0, 4, 0, 0, -393214, 0, 0, -327686, 0, 0, -393221, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 0, 0, -327682, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 196614, 0, 0, 196615, 0, 0, -262145, 196608, 0, -327679, 131072, 0, 131071, 131072, 0, 65537, 262144, 0, -131069, 262144, 0, -65539, 196608, 0, 65533, 131072, 0, 3, 196608, 0, -65543, 262144, 0, 131067, 0, 0, 262139, 0, 0, 262138, 0, 0, 262137, 196608, 0, -393213, 196608, 0, -393222, 196608, 0, -65531, 131072, 0, -196603, 196608, 0, 262143, 262144, 0, 196609, 262144, 0)
+layer_0/tile_data = PackedInt32Array(-2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -65534, 0, 0, 2, 0, 0, -196608, 0, 0, -262144, 0, 0, -262143, 0, 0, -196609, 0, 0, -327680, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196607, 0, 0, 196608, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -196604, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -196602, 0, 0, -262138, 0, 0, -327674, 0, 0, -393210, 0, 0, -393211, 0, 0, -393212, 0, 0, -131065, 0, 0, -131064, 0, 0, -65528, 0, 0, 8, 0, 0, -65530, 0, 0, -65533, 0, 0, -65532, 0, 0, 65543, 0, 0, 65544, 0, 0, 131079, 0, 0, -65527, 0, 0, -131062, 0, 0, -65526, 0, 0, 10, 0, 0, 196606, 0, 0, 196605, 0, 0, 196604, 0, 0, 196603, 0, 0, 131064, 0, 0, 65528, 0, 0, -8, 0, 0, -3, 0, 0, -4, 0, 0, -5, 0, 0, -6, 0, 0, -7, 0, 0, -131079, 0, 0, -131080, 0, 0, -65544, 0, 0, -131078, 0, 0, -65542, 0, 0, -196615, 0, 0, -262151, 0, 0, -262150, 0, 0, -262148, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -9, 0, 0, 131074, 0, 0, 196610, 0, 0, 262144, 0, 0, -393216, 0, 0, -393215, 0, 0, -327681, 0, 0, -458752, 0, 0, -524288, 0, 0, 131075, 0, 0, 262142, 0, 0, 327678, 0, 0, 327679, 0, 0, 262145, 0, 0, 262146, 0, 0, 327680, 0, 0, 65540, 0, 0, 65541, 0, 0, 131076, 0, 0, -65540, 0, 0, -131076, 0, 0, 4, 0, 0, -393214, 0, 0, -327686, 0, 0, -393221, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 0, 0, -327682, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 196614, 0, 0, 196615, 0, 0, -262145, 196608, 0, -327679, 131072, 0, 131071, 131072, 0, 65537, 262144, 0, -131069, 262144, 0, -65539, 196608, 0, 65533, 131072, 0, 3, 196608, 0, -65543, 131072, 0, 131067, 0, 0, 262139, 0, 0, 262138, 0, 0, 262137, 196608, 0, -393213, 196608, 0, -393222, 196608, 0, -65531, 131072, 0, -196603, 196608, 0, 262143, 262144, 0, 196609, 262144, 0, 65538, 196608, 0, 65539, 262144, 0, 131070, 131072, 0, 131069, 262144, 0, 65531, 262144, 0, 131068, 131072, 0, -131075, 262144, 0, -131074, 196608, 0, -131073, 262144, 0, -196607, 262144, 0, -196606, 196608, 0, -196605, 131072, 0, -262139, 131072, 0, -327675, 131072, 0, -327676, 196608, 0, -327677, 262144, 0, -327678, 262144, 0, -262146, 262144, 0, -262147, 262144, 0, -327683, 262144, 0, -327684, 196608, 0, -327685, 131072, 0, -262149, 131072, 0, -196613, 131072, 0, -196614, 196608, 0, -131077, 196608, 0, -65541, 196608, 0, 65530, 196608, 0, 65529, 262144, 0, 131065, 196608, 0, 196601, 196608, 0, 196602, 131072, 0, 131066, 131072, 0, 262140, 196608, 0, 262141, 131072, 0, 196600, 131072, 0, 262136, 65536, 0, 196599, 65536, 0, 131063, 131072, 0, 65527, 262144, 0, -65545, 262144, 0, -131081, 262144, 0, -196617, 65536, 0, -196616, 262144, 0, -262152, 131072, 0, -327688, 65536, 0, -327687, 131072, 0, -393223, 65536, 0, -458757, 131072, 0, -458756, 196608, 0, -458755, 262144, 0, -458754, 196608, 0, -458753, 262144, 0, -393217, 131072, 0, -458758, 196608, 0, -524287, 262144, 0, -458751, 262144, 0, -458750, 262144, 0, -458749, 196608, 0, -458748, 196608, 0, -458747, 131072, 0, -458746, 131072, 0, -458745, 196608, 0, -393209, 131072, 0, -327673, 262144, 0, -262137, 262144, 0, -196601, 131072, 0, -196600, 131072, 0, -131063, 262144, 0, -196599, 262144, 0, -196598, 262144, 0, -196597, 196608, 0, -131061, 262144, 0, -65525, 262144, 0, 11, 262144, 0, 65547, 196608, 0, 65546, 131072, 0, 65545, 196608, 0, 9, 196608, 0, -65529, 131072, 0, 7, 131072, 0, 6, 196608, 0, 5, 262144, 0, 65542, 262144, 0, 131078, 131072, 0, 131077, 262144, 0, 196613, 196608, 0, 196611, 262144, 0, 327674, 196608, 0, 327675, 196608, 0, 327676, 196608, 0, 327677, 196608, 0, 327673, 65536, 0, 393213, 131072, 0, 393214, 196608, 0, 393215, 196608, 0, 458751, 262144, 0, 393216, 262144, 0, 393217, 131072, 0, 327681, 131072, 0, 327682, 196608, 0, 327683, 196608, 0, 327684, 131072, 0, 327685, 262144, 0, 327686, 131072, 0, 327687, 196608, 0, 262151, 196608, 0, 262152, 196608, 0, 196616, 196608, 0, 131080, 131072, 0, 131081, 196608, 0, -10, 196608, 0, -65546, 131072, 0, 65526, 196608, 0, -524289, 196608, 0, -589824, 131072, 0, -589823, 262144, 0, -524286, 196608, 0, 65532, 131072, 0, 196612, 196608, 0)
+
+[node name="NoGoZone8" type="Node2D" parent="."]
+
+[node name="Area2D" type="StaticBody2D" parent="NoGoZone8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoGoZone8/Area2D"]
+position = Vector2(-1038.25, 751)
+shape = SubResource("RectangleShape2D_p6tgw")
+
+[node name="NoGoZone9" type="Node2D" parent="."]
+position = Vector2(217, 159)
+
+[node name="Area2D" type="StaticBody2D" parent="NoGoZone9"]
+position = Vector2(384, 726)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoGoZone9/Area2D"]
+position = Vector2(-3937, -1660)
+shape = SubResource("RectangleShape2D_i7axr")
+one_way_collision_margin = 0.0
+
+[node name="Guard" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(2287, 669)
+
+[node name="Guard2" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(-3349, -1793)
+
+[node name="Guard3" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(4836, -271)
+
+[node name="Guard4" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(-324, -1824)
+
+[node name="Guard5" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(-621, -657)
+
+[node name="Guard7" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(-2184, -3261)
+
+[node name="Guard8" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(2809, -2819)
+
+[node name="Guard9" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(2288, -1052)
+
+[node name="Guard10" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(-2349, 1303)
+
+[node name="Guard13" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(239, 1747)
+
+[node name="Guard14" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(-3847, -271)
+
+[node name="Guard11" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(771, 2294)
+
+[node name="Guard15" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(852, -2860)
+
+[node name="Guard16" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(3844, 942)
+
+[node name="Guard17" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(1086, 163)
+
+[node name="Guard12" parent="." instance=ExtResource("3_p4032")]
+position = Vector2(-1828, -1274)
+
+[node name="Peasant" parent="." instance=ExtResource("4_vnaxd")]
+position = Vector2(-2847, 1801)
+
+[node name="Peasant2" parent="." instance=ExtResource("4_vnaxd")]
+position = Vector2(-2817, -2770)
+
+[node name="Peasant3" parent="." instance=ExtResource("4_vnaxd")]
+position = Vector2(256, -3898)
+
+[node name="Peasant4" parent="." instance=ExtResource("4_vnaxd")]
+position = Vector2(-691, -737)
+
+[node name="Peasant5" parent="." instance=ExtResource("4_vnaxd")]
+position = Vector2(-3837, 764)
+
+[node name="Peasant6" parent="." instance=ExtResource("4_vnaxd")]
+position = Vector2(5318, -731)
+
+[node name="Peasant7" parent="." instance=ExtResource("4_vnaxd")]
+position = Vector2(3339, -2833)
+
+[node name="Peasant8" parent="." instance=ExtResource("4_vnaxd")]
+position = Vector2(1320, 272)
+
+[node name="Peasant9" parent="." instance=ExtResource("4_vnaxd")]
+position = Vector2(-1788, -2297)
+
+[node name="Infected" parent="." instance=ExtResource("5_x78l5")]
+position = Vector2(246, 2878)
+
+[node name="NoGoZone1" type="Node2D" parent="."]
+position = Vector2(-3310, 1762)
+
+[node name="Area2D" type="StaticBody2D" parent="NoGoZone1"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NoGoZone1/Area2D"]
+polygon = PackedVector2Array(3805, -1261, 3814, -758, 5350, -740, 5350, -1763, 4838, -1763, 4847, -1261)
+
+[node name="NoGoZone2" type="Node2D" parent="."]
+position = Vector2(-3310, 1762)
+
+[node name="Area2D" type="StaticBody2D" parent="NoGoZone2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NoGoZone2/Area2D"]
+polygon = PackedVector2Array(2289, -2276, 2297, -2787, 3320, -2787, 3302, -3326, 1758, -3308, 1767, -2275)
+
+[node name="NoGoZone3" type="Node2D" parent="."]
+
+[node name="Area2D" type="StaticBody2D" parent="NoGoZone3"]
+position = Vector2(-3310, 1762)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NoGoZone3/Area2D"]
+polygon = PackedVector2Array(-1311, -2299, -1311, -1778, -813, -1767, -790, -749, -270, -737, -259, -1756, 2253, -1756, 2264, -1280, 3282, -1280, 3305, -760, 1223, -760, 1235, -1247, 760, -1269, 760, -228, 239, -228, 239, 247, 1257, 270, 1269, -217, 2253, -228, 2276, 801, 3294, 790, 3305, 1310, 3814, 1310, 3814, 801, 6892, 790, 6892, 281, 7401, 281, 7389, -737, 7921, -737, 7932, -1767, 8408, -1767, 8419, -1247, 8939, -1280, 8928, -2808, 8408, -2808, 8419, -2287, 7898, -2265, 7887, -2751, 7887, -2763, 6892, -2796, 6869, -4833, 5353, -4833, 5353, -4358, 6371, -4324, 6394, -2796, 5839, -2785, 5851, -3815, 3792, -3815, 3803, -4369, 4844, -4335, 4821, -4856, 3826, -4822, 3814, -5885, 3328, -5874, 3305, -4856, 2796, -4833, 2762, -5319, 771, -5319, 760, -4833, 2279, -4829, 2276, -4329, 3271, -4335, 3305, -3815, 1789, -3815, 1755, -4324, 1257, -4335, 1266, -2273, 750, -2273, 737, -3294, 194, -3306, 250, -3815, 703, -3815, 752, -4825, 242, -4815, 228, -4301, -270, -4301, -281, -3283, -757, -3294, -791, -2249, -2279, -2361, -1367, -6315, 1846, -6688, 6846, -6406, 8996, -4380, 9143, -3600, 10376, -3226, 9528, 688, 7548, 2204, 2864, 2159, -655, 1582, -2352, -47, -2035, -2344)
+
+[node name="NoGoZone4" type="Node2D" parent="."]
+
+[node name="Area2D" type="StaticBody2D" parent="NoGoZone4"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NoGoZone4/Area2D"]
+polygon = PackedVector2Array(1519, 1534, 1519, 2055, 3081, 2055, 3072, 1543, 3620, 1525, 3575, 510, 4096, 501, 4087, -522, 3575, -495, 3593, 8, 3081, 8, 3072, -531, 2525, -513, 2552, 510, 3063, 528, 3063, 986, 2552, 1013, 2525, 1516)
+
+[node name="NoGoZone5" type="Node2D" parent="."]
+
+[node name="Area2D" type="StaticBody2D" parent="NoGoZone5"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NoGoZone5/Area2D"]
+polygon = PackedVector2Array(509, -1537, 522, -1025, 1537, -1007, 1519, -513, 2058, -504, 2050, -1535)
+
+[node name="NoGoZone6" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NoGoZone6"]
+position = Vector2(-627, 1625)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoGoZone6/StaticBody2D"]
+position = Vector2(363, 170.5)
+shape = SubResource("RectangleShape2D_xwfby")
+
+[node name="NoGoZone7" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NoGoZone7"]
+position = Vector2(-627, 1625)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoGoZone7/StaticBody2D"]
+position = Vector2(1396, 163)
+shape = SubResource("RectangleShape2D_xwfby")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 135.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
