@@ -1,13 +1,35 @@
-[gd_scene load_steps=17 format=3 uid="uid://knk7dgj36fp8"]
+[gd_scene load_steps=32 format=3 uid="uid://knk7dgj36fp8"]
 
 [ext_resource type="Script" path="res://entities/Guard.cs" id="1_pnbeo"]
 [ext_resource type="Texture2D" uid="uid://dkg6dsmaxw2k7" path="res://assets/light.png" id="2_d1utq"]
 [ext_resource type="Texture2D" uid="uid://b4swlfiy3ccsm" path="res://assets/right_walk.png" id="3_fh15k"]
+[ext_resource type="Texture2D" uid="uid://qiii3c12pspu" path="res://assets/down_walk.png" id="3_sfsdl"]
+[ext_resource type="Texture2D" uid="uid://bmabks28r0g7s" path="res://assets/up_walk.png" id="5_26ks5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_te7fk"]
 radius = 64.4981
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gnb6d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk7nh"]
+atlas = ExtResource("3_sfsdl")
+region = Rect2(0, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3dcd"]
+atlas = ExtResource("3_sfsdl")
+region = Rect2(124, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhdts"]
+atlas = ExtResource("3_sfsdl")
+region = Rect2(248, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya50a"]
+atlas = ExtResource("3_sfsdl")
+region = Rect2(372, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v70xb"]
+atlas = ExtResource("3_sfsdl")
+region = Rect2(496, 0, 124, 124)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ngwk3"]
 atlas = ExtResource("3_fh15k")
@@ -49,8 +71,60 @@ region = Rect2(992, 0, 124, 124)
 atlas = ExtResource("3_fh15k")
 region = Rect2(1116, 0, 124, 124)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_skdnu"]
+atlas = ExtResource("5_26ks5")
+region = Rect2(0, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44d7q"]
+atlas = ExtResource("5_26ks5")
+region = Rect2(124, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvqy2"]
+atlas = ExtResource("5_26ks5")
+region = Rect2(248, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyjtl"]
+atlas = ExtResource("5_26ks5")
+region = Rect2(372, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjheh"]
+atlas = ExtResource("5_26ks5")
+region = Rect2(496, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnpk3"]
+atlas = ExtResource("5_26ks5")
+region = Rect2(620, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70up4"]
+atlas = ExtResource("5_26ks5")
+region = Rect2(744, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0dr7"]
+atlas = ExtResource("5_26ks5")
+region = Rect2(868, 0, 124, 124)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_pl4j6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk7nh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3dcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhdts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya50a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v70xb")
+}],
+"loop": true,
+"name": &"down_walk",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ngwk3")
@@ -85,6 +159,35 @@ animations = [{
 "loop": true,
 "name": &"right_walk",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skdnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44d7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvqy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyjtl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjheh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnpk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70up4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0dr7")
+}],
+"loop": true,
+"name": &"up_walk",
+"speed": 5.0
 }]
 
 [node name="Guard" type="CharacterBody2D"]
@@ -107,4 +210,7 @@ scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_pl4j6")
 animation = &"right_walk"
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="LightArea" to="." method="_on_light_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
