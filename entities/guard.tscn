@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://knk7dgj36fp8"]
+[gd_scene load_steps=32 format=3 uid="uid://bffqyf5qqfcvt"]
 
 [ext_resource type="Script" path="res://entities/Guard.cs" id="1_pnbeo"]
 [ext_resource type="Texture2D" uid="uid://dkg6dsmaxw2k7" path="res://assets/light.png" id="2_d1utq"]
