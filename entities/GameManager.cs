@@ -7,32 +7,59 @@ public partial class GameManager : Node2D
 	private uint idCnt = 0;
 	private Random rand;
 
+	private Camera2D camera;
+	private Label time_left;
+	private Label game_time_left;
+	private Timer gameTimeLeft;
+
 	[Export]
 	public TileMap cityMap;
 
 	public override void _Ready()
 	{	
 		rand = new Random();
+		camera = GetNode<Camera2D>("Camera2D");
+		time_left = GetNode<Camera2D>("Camera2D").GetNode<Panel>("Panel").GetNode<Label>("TimeLeft");
+		game_time_left = GetNode<Camera2D>("Camera2D").GetNode<Panel>("Panel").GetNode<Label>("GameTimeLeft");
+		gameTimeLeft = GetNode<Timer>("Timer");
+		GD.Print($"Camera not null? {camera != null}");
 		
-		// TODO: manually go through children and assign them IDs
-		Guard g = (Guard)ResourceLoader.Load<PackedScene>("res://entities/guard.tscn").Instantiate();
-		g.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
-		g.setId(idCnt++);
-		AddChild(g);
-		g.Scale = new Vector2(3.0f, 3.0f);
+		Array<Node> children = GetChildren();
+		uint id = 0;
+		for (int i = 0; i < children.Count; ++i, ++id)
+		{
+			if (
+				children[i].Name == "Camera2D" || 
+				children[i].Name == "CityMap" || 
+				children[i].Name == "Timer" ||
+				children[i].Name.ToString().Contains("NoGoZone")
+			) continue;
+			
+			((Entity)children[i]).setId(id);
+		}
 		
-		
-		Peasant p1 = (Peasant)ResourceLoader.Load<PackedScene>("res://entities/peasant.tscn").Instantiate();
-		p1.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
-		p1.setId(idCnt++);
-		AddChild(p1);
-		p1.Scale = new Vector2(3.0f, 3.0f);
-		
-		Peasant p2 = (Peasant)ResourceLoader.Load<PackedScene>("res://entities/peasant.tscn").Instantiate();
-		p2.GlobalPosition = new Vector2(rand.Next(5, 300) * 1.0f, rand.Next(5, 300) * 1.0f);
-		p2.setId(idCnt++);
-		AddChild(p2);
-		p2.Scale = new Vector2(3.0f, 3.0f);
+		gameTimeLeft.Start();
+	}
+	
+	public override void _PhysicsProcess(double delta)
+	{
+		Array<Node> children = GetChildren();
+		for (int i = 0; i < children.Count; ++i)
+		{
+			if (
+				children[i].Name == "Camera2D" || 
+				children[i].Name == "CityMap" || 
+				children[i].Name == "Timer" ||
+				children[i].Name.ToString().Contains("NoGoZone")
+			) continue;
+			
+			if (children[i] is Infected)
+			{
+				camera.GlobalPosition = ((Infected)children[i]).GlobalPosition;
+				time_left.Text = "Time until host dies: " + Math.Round(((Infected)children[i]).TimeRemaining()).ToString();
+				game_time_left.Text = "Time until daybreak: " + Math.Round(gameTimeLeft.TimeLeft).ToString();
+			}
+		}
 	}
 	
 	public void infect(uint idToInfect)
@@ -40,7 +67,12 @@ public partial class GameManager : Node2D
 		Array<Node> children = GetChildren();
 		for (int i = 0; i < children.Count; ++i)
 		{
-			if (children[i].Name == "Camera2D" || children[i].Name == "CityMap") continue;
+			if (
+				children[i].Name == "Camera2D" || 
+				children[i].Name == "CityMap" || 
+				children[i].Name == "Timer" ||
+				children[i].Name.ToString().Contains("NoGoZone")
+			) continue;
 			
 			if (((Entity) children[i]).getId() == idToInfect)
 			{
@@ -53,5 +85,16 @@ public partial class GameManager : Node2D
 				break;
 			}
 		}
+	}
+	
+	public void loseState()
+	{
+		
+	}
+	
+	//winState
+	private void _on_timer_timeout()
+	{
+			
 	}
 }

@@ -13,7 +13,7 @@ public partial class Infected : Entity
 	};
 	
 	private Dictionary<Vector2, SpriteDir> dict;
-	private float speed = 100.0f;
+	private float speed = 700.0f;
 	
 	public GameManager manager;
 	public Timer timer;
@@ -85,7 +85,6 @@ public partial class Infected : Entity
 				Entity e = (Entity) o;
 				QueueFree();
 				manager.infect(e.getId());
-				
 			}
 		}
 	}
@@ -98,4 +97,12 @@ public partial class Infected : Entity
 	{
 		QueueFree();
 	}
+	
+	public double TimeRemaining()
+	{
+		return timer.TimeLeft;
+	}
 }
+
+
+
