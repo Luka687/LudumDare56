@@ -1,24 +1,94 @@
-[gd_scene load_steps=6 format=3 uid="uid://knk7dgj36fp8"]
+[gd_scene load_steps=17 format=3 uid="uid://knk7dgj36fp8"]
 
 [ext_resource type="Script" path="res://entities/Guard.cs" id="1_pnbeo"]
 [ext_resource type="Texture2D" uid="uid://dkg6dsmaxw2k7" path="res://assets/light.png" id="2_d1utq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_anrrl"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_34v8m"]
+[ext_resource type="Texture2D" uid="uid://b4swlfiy3ccsm" path="res://assets/right_walk.png" id="3_fh15k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_te7fk"]
 radius = 64.4981
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnb6d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngwk3"]
+atlas = ExtResource("3_fh15k")
+region = Rect2(0, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjvt5"]
+atlas = ExtResource("3_fh15k")
+region = Rect2(124, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iawgb"]
+atlas = ExtResource("3_fh15k")
+region = Rect2(248, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5c0d"]
+atlas = ExtResource("3_fh15k")
+region = Rect2(372, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kw5i"]
+atlas = ExtResource("3_fh15k")
+region = Rect2(496, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heq2i"]
+atlas = ExtResource("3_fh15k")
+region = Rect2(620, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q1n4"]
+atlas = ExtResource("3_fh15k")
+region = Rect2(744, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebl4i"]
+atlas = ExtResource("3_fh15k")
+region = Rect2(868, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np42u"]
+atlas = ExtResource("3_fh15k")
+region = Rect2(992, 0, 124, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3igct"]
+atlas = ExtResource("3_fh15k")
+region = Rect2(1116, 0, 124, 124)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pl4j6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngwk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjvt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iawgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5c0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kw5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heq2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q1n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebl4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np42u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3igct")
+}],
+"loop": true,
+"name": &"right_walk",
+"speed": 5.0
+}]
+
 [node name="Guard" type="CharacterBody2D"]
 script = ExtResource("1_pnbeo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_anrrl")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-scale = Vector2(20, 20)
-mesh = SubResource("QuadMesh_34v8m")
 
 [node name="Light" type="Sprite2D" parent="."]
 scale = Vector2(0.35, 0.35)
@@ -28,5 +98,13 @@ texture = ExtResource("2_d1utq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightArea"]
 shape = SubResource("CircleShape2D_te7fk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gnb6d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.85, 0.85)
+sprite_frames = SubResource("SpriteFrames_pl4j6")
+animation = &"right_walk"
 
 [connection signal="body_entered" from="LightArea" to="." method="_on_light_area_body_entered"]

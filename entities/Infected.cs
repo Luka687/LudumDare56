@@ -1,23 +1,42 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Infected : Entity
 {	
-	private float speed = 100.0f;
-	public Timer timer;
-	public GameManager manager;
+	enum SpriteDir 
+	{
+		UP, 
+		DOWN,
+		LEFT,
+		RIGHT
+	};
 	
-	[Export]
+	private Dictionary<Vector2, SpriteDir> dict;
+	private float speed = 100.0f;
+	
+	public GameManager manager;
+	public Timer timer;
 	public RayCast2D raycast; 
+	public AnimatedSprite2D animPlayer;
 	
 	public override void _Ready() 
 	{
+		dict = new Dictionary<Vector2, SpriteDir>();
+		dict[new Vector2(1.0f, 0.0f)] = SpriteDir.RIGHT;
+		dict[new Vector2(-1.0f, 0.0f)] = SpriteDir.LEFT;
+		dict[new Vector2(0.0f, 1.0f)] = SpriteDir.DOWN;
+		dict[new Vector2(0.0f, -1.0f)] = SpriteDir.UP;
+		
+		raycast = GetNode<RayCast2D>("RayCast2D");
 		manager = (GameManager)GetParent();
 		timer = GetNode<Timer>("Timer");
+		animPlayer = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		timer.Start();
-		GD.Print(timer != null);
-		GD.Print(manager != null);
-		GD.Print(raycast != null);
+		GD.Print($"Timer null? {timer != null}");
+		GD.Print($"Manager null? {manager != null}");
+		GD.Print($"Raycast null? {raycast != null}");
+		GD.Print($"Animation player null? {animPlayer != null}");
 	}
 	
 	public override void _PhysicsProcess(double delta) 
