@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://cdiv86e0h20xa"]
+[gd_scene load_steps=30 format=3 uid="uid://cdiv86e0h20xa"]
 
 [ext_resource type="Script" path="res://entities/Infected.cs" id="1_3rgel"]
 [ext_resource type="Texture2D" uid="uid://uwyaak20sg6x" path="res://assets/down_walk_p.png" id="2_edasr"]
 [ext_resource type="Texture2D" uid="uid://cochr1iqmtff" path="res://assets/right_walk_p.png" id="3_rn1yg"]
 [ext_resource type="Texture2D" uid="uid://clxgeo4q7fabm" path="res://assets/up_walk_p.png" id="4_xqw3r"]
+[ext_resource type="FontFile" uid="uid://njcc063w63p4" path="res://fonts/Pieces of Eight.ttf" id="5_jcjqf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fn2ne"]
 atlas = ExtResource("2_edasr")
@@ -169,6 +170,12 @@ size = Vector2(32.6667, 86)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbc76"]
 size = Vector2(24.8, 41.6)
 
+[sub_resource type="LabelSettings" id="LabelSettings_eph4m"]
+font = ExtResource("5_jcjqf")
+font_size = 20
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Infected" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_3rgel")
@@ -190,6 +197,16 @@ shape = SubResource("RectangleShape2D_a3rye")
 position = Vector2(-1.66667, 9.33333)
 scale = Vector2(2.5, 2.5)
 shape = SubResource("RectangleShape2D_tbc76")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 3
+offset_left = -39.0
+offset_top = -68.0
+offset_right = 32.0
+offset_bottom = -45.0
+text = "E to infect"
+label_settings = SubResource("LabelSettings_eph4m")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="InfectArea" to="." method="_on_infect_area_body_entered"]

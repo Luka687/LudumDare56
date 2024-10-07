@@ -79,7 +79,7 @@ public partial class GameManager : Node2D
 				Node2D oldNode = (Node2D) children[i];
 				Infected newNode = (Infected)ResourceLoader.Load<PackedScene>("res://entities/infected.tscn").Instantiate();
 				newNode.GlobalPosition = oldNode.GlobalPosition;
-				newNode.inInfectRange(null);
+				newNode.inInfectRange(null, false);
 				newNode.setId(idToInfect);
 				RemoveChild(oldNode);
 				AddChild(newNode);

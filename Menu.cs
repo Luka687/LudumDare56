@@ -8,4 +8,9 @@ public partial class Menu : Node2D
 		PackedScene introScene = (PackedScene)ResourceLoader.Load("res://intro_scene.tscn");
 		GetTree().ChangeSceneToPacked(introScene);
 	}
+	
+	private void _on_exit_game_pressed()
+	{
+		GetTree().Quit();
+	}
 }

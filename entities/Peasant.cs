@@ -73,7 +73,7 @@ public partial class Peasant : Entity
 	private void _on_area_2d_body_entered(Node2D body)
 	{
 		if (body is Infected){
-			((Infected) body).inInfectRange(this.getId());
+			((Infected) body).inInfectRange(this.getId(), true);
 		}
 		//if (!(body is Infected))
 		//{
@@ -87,7 +87,7 @@ public partial class Peasant : Entity
 	private void _on_area_2d_body_exited(Node2D body)
 	{
 		if(body is Infected){
-			((Infected) body).inInfectRange(null);
+			((Infected) body).inInfectRange(null, false);
 		}
 	}
 }
