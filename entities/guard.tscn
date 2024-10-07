@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bmabks28r0g7s" path="res://assets/up_walk.png" id="5_26ks5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_te7fk"]
-radius = 167.5
+radius = 140.108
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gnb6d"]
 

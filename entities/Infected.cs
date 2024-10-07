@@ -15,6 +15,7 @@ public partial class Infected : Entity
 	private Dictionary<Vector2, SpriteDir> dict;
 	private float speed = 700.0f;
 	private Area2D area2D;
+	private uint? idToInfect;
 	
 	public GameManager manager;
 	public Timer timer;
@@ -65,6 +66,18 @@ public partial class Infected : Entity
 			}			
 		}
 		
+		if (Input.IsKeyPressed(Key.E)){
+			GD.Print("Can't Infect");
+			if(idToInfect != null){
+				GD.Print("INFECT");
+				manager.infect(idToInfect);
+				QueueFree();
+			}
+			else{
+				GD.Print("Can't Infect");
+			}
+		}
+		
 		vel = speed * dir;
 		Velocity = vel;
 		MoveAndSlide();	
@@ -77,6 +90,7 @@ public partial class Infected : Entity
 	private void _on_timer_timeout()
 	{
 		QueueFree();
+		manager.loseState();
 	}
 	
 	public double TimeRemaining()
@@ -84,21 +98,8 @@ public partial class Infected : Entity
 		return timer.TimeLeft;
 	}
 	
-	public void callManager(uint _id)
-	{
-		manager.infect(_id);
-	}
-	
-	private void _on_infect_area_body_entered(Node2D body)
-	{
-		//GD.Print($"Is peasant: {body is Peasant}");
-		//if (body is Peasant && Input.IsKeyPressed(Key.E))
-		//{
-			//Entity e = (Entity) body;
-			//QueueFree();
-			//CallDeferred(nameof(callManager), e.getId());
-		//}
-		List<Node> bodies = 
+	public void inInfectRange(uint? id){
+		idToInfect = id;
 	}
 
 }

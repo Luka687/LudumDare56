@@ -25,20 +25,19 @@ offset_left = 265.0
 offset_top = 69.0
 offset_right = 877.0
 offset_bottom = 159.0
-text = "CONGRATS"
+text = "Well Done..."
 label_settings = SubResource("LabelSettings_qsxtl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextLabel" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 188.0
-offset_right = 991.0
-offset_bottom = 365.0
-text = "You managed to survive... 
-A new day has come for you to
-infect everyone..."
+offset_left = 138.0
+offset_top = 183.0
+offset_right = 1022.0
+offset_bottom = 360.0
+text = "You survived the night.
+A new day has come, and the world awaits you..."
 label_settings = SubResource("LabelSettings_lhxfw")
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -32,13 +32,14 @@ vertical_alignment = 1
 
 [node name="TextLabel" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 413.0
-offset_top = 161.0
-offset_right = 805.0
-offset_bottom = 338.0
-text = "Luka voli da jebe koze 
-i da slusa Desingera, 
-samana naroda"
+offset_left = 196.0
+offset_top = 155.0
+offset_right = 999.0
+offset_bottom = 392.0
+text = "Your host body has been captured and killed,
+ taking you along with it.
+The world continues unaware of the chaos
+you would have unleashed."
 label_settings = SubResource("LabelSettings_y4uxh")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -46,9 +47,9 @@ vertical_alignment = 1
 [node name="ReturnToGame" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 478.0
-offset_top = 372.0
+offset_top = 410.0
 offset_right = 732.0
-offset_bottom = 432.0
+offset_bottom = 470.0
 theme_override_fonts/font = ExtResource("2_0h7fj")
 theme_override_font_sizes/font_size = 35
 text = "Return to infecting"
@@ -56,9 +57,9 @@ text = "Return to infecting"
 [node name="ReturnToMenu" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 496.0
-offset_top = 460.0
-offset_right = 690.0
-offset_bottom = 516.0
+offset_top = 501.0
+offset_right = 708.0
+offset_bottom = 557.0
 theme_override_fonts/font = ExtResource("2_0h7fj")
 theme_override_font_sizes/font_size = 35
 text = "Return to menu"

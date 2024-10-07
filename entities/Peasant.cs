@@ -72,13 +72,25 @@ public partial class Peasant : Entity
 	
 	private void _on_area_2d_body_entered(Node2D body)
 	{
-		if (!(body is Infected))
-		{
-			GD.Print("A hit");
+		if (body is Infected){
+			((Infected) body).inInfectRange(this.getId());
+		}
+		//if (!(body is Infected))
+		//{
 			if (pDir == PeasantDir.UP) pDir = PeasantDir.DOWN;
 			else if (pDir == PeasantDir.DOWN) pDir = PeasantDir.UP;
 			else if (pDir == PeasantDir.LEFT) pDir = PeasantDir.RIGHT;
 			else pDir = PeasantDir.LEFT;
+		//}		
+	}
+	
+	private void _on_area_2d_body_exited(Node2D body)
+	{
+		if(body is Infected){
+			((Infected) body).inInfectRange(null);
 		}
 	}
 }
+
+
+

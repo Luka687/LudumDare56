@@ -17,12 +17,14 @@ public partial class Guard : Entity
 	private AnimatedSprite2D animPlayer;
 	private GuardDir gDir; 
 	private float speed = 300.0f;
+	private GameManager manager;
 	
 	public override void _Ready() 
 	{
 		rand = new Random();
 		gDir = (GuardDir) rand.Next(0,3);
 		timer = GetNode<Timer>("Timer");
+		manager = (GameManager)GetParent();
 		timer.WaitTime = rand.Next(5, 10);
 		animPlayer = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		GD.Print($"Timer not null? {timer != null}");
@@ -68,6 +70,7 @@ public partial class Guard : Entity
 		if (body is Infected)
 		{
 			((Infected) body).kill();
+			manager.loseState();
 		}
 	}
 

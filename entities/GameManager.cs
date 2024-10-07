@@ -62,7 +62,7 @@ public partial class GameManager : Node2D
 		}
 	}
 	
-	public void infect(uint idToInfect)
+	public void infect(uint? idToInfect)
 	{
 		Array<Node> children = GetChildren();
 		for (int i = 0; i < children.Count; ++i)
@@ -79,6 +79,7 @@ public partial class GameManager : Node2D
 				Node2D oldNode = (Node2D) children[i];
 				Infected newNode = (Infected)ResourceLoader.Load<PackedScene>("res://entities/infected.tscn").Instantiate();
 				newNode.GlobalPosition = oldNode.GlobalPosition;
+				newNode.inInfectRange(null);
 				newNode.setId(idToInfect);
 				RemoveChild(oldNode);
 				AddChild(newNode);
@@ -89,12 +90,19 @@ public partial class GameManager : Node2D
 	
 	public void loseState()
 	{
+		PackedScene loseScene = (PackedScene)ResourceLoader.Load("res://lose_scene.tscn");
+		CallDeferred("changeScene", loseScene);
 		
 	}
 	
 	//winState
 	private void _on_timer_timeout()
 	{
-			
+		PackedScene winScene = (PackedScene)ResourceLoader.Load("res://win_scene.tscn");
+		CallDeferred("changeScene", winScene);	
+	}
+	
+	public void changeScene(PackedScene scenePath){
+		GetTree().ChangeSceneToPacked(scenePath);
 	}
 }

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://btvf565w41bp1"]
+
+[ext_resource type="Script" path="res://IntroScene.cs" id="1_0g6qa"]
+[ext_resource type="FontFile" uid="uid://njcc063w63p4" path="res://fonts/Pieces of Eight.ttf" id="1_cnpyq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_47w0l"]
+font = ExtResource("1_cnpyq")
+font_size = 50
+
+[node name="IntroScene" type="Node2D"]
+script = ExtResource("1_0g6qa")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1157.0
+offset_bottom = 652.0
+
+[node name="TextLabel" type="Label" parent="Panel"]
+offset_left = 146.0
+offset_top = 52.0
+offset_right = 1033.0
+offset_bottom = 589.0
+text = "You are an alien parasite,
+spreading from this medieval town
+to eradicate humanity.
+However, at night, the host body rejects you,
+killing itself in the process.
+You must avoid the plague doctors hunting you and
+jump from host to host until the night ends.
+
+Can you survive until daybreak?
+"
+label_settings = SubResource("LabelSettings_47w0l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
