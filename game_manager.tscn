@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsjeeyejpgark"]
+[gd_scene load_steps=14 format=3 uid="uid://bsjeeyejpgark"]
 
 [ext_resource type="Script" path="res://entities/GameManager.cs" id="1_mfd5n"]
 [ext_resource type="Texture2D" uid="uid://tigmiwbk3jhn" path="res://assets/tileset.png" id="2_ebqaw"]
 [ext_resource type="PackedScene" uid="uid://knk7dgj36fp8" path="res://entities/guard.tscn" id="3_p4032"]
 [ext_resource type="PackedScene" uid="uid://n6hvmn4bmrlm" path="res://entities/peasant.tscn" id="4_vnaxd"]
 [ext_resource type="PackedScene" uid="uid://cdiv86e0h20xa" path="res://entities/infected.tscn" id="5_x78l5"]
+[ext_resource type="AudioStream" uid="uid://dxhb6mtqh3emf" path="res://music/main theme.mp3" id="6_xiepy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xcv8r"]
 font_size = 40
@@ -92,9 +93,6 @@ one_way_collision_margin = 0.0
 [node name="Guard" parent="." instance=ExtResource("3_p4032")]
 position = Vector2(-1389, 1255)
 
-[node name="Guard2" parent="." instance=ExtResource("3_p4032")]
-position = Vector2(-3349, -1793)
-
 [node name="Guard3" parent="." instance=ExtResource("3_p4032")]
 position = Vector2(4836, -271)
 
@@ -114,7 +112,7 @@ position = Vector2(2288, -1052)
 position = Vector2(215, 782)
 
 [node name="Guard14" parent="." instance=ExtResource("3_p4032")]
-position = Vector2(-3847, -271)
+position = Vector2(-3820, -1241)
 
 [node name="Guard11" parent="." instance=ExtResource("3_p4032")]
 position = Vector2(-262, 2285)
@@ -231,5 +229,9 @@ shape = SubResource("RectangleShape2D_xwfby")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 120.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xiepy")
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

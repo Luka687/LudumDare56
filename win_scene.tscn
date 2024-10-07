@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkul3wopsev2t"]
+[gd_scene load_steps=6 format=3 uid="uid://dkul3wopsev2t"]
 
 [ext_resource type="Script" path="res://WinScene.cs" id="1_u56gx"]
 [ext_resource type="FontFile" uid="uid://njcc063w63p4" path="res://fonts/Pieces of Eight.ttf" id="2_38yo2"]
+[ext_resource type="AudioStream" uid="uid://dxhb6mtqh3emf" path="res://music/main theme.mp3" id="3_oo17k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qsxtl"]
 font = ExtResource("2_38yo2")
@@ -61,6 +62,9 @@ offset_bottom = 550.0
 theme_override_fonts/font = ExtResource("2_38yo2")
 theme_override_font_sizes/font_size = 50
 text = "Return to menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_oo17k")
 
 [connection signal="pressed" from="Panel/ReturnToGame" to="." method="_on_return_to_game_pressed"]
 [connection signal="pressed" from="Panel/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]

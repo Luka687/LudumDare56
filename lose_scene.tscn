@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs7pwv0cab6ld"]
+[gd_scene load_steps=6 format=3 uid="uid://bs7pwv0cab6ld"]
 
 [ext_resource type="Script" path="res://LoseScene.cs" id="1_qnqn2"]
 [ext_resource type="FontFile" uid="uid://njcc063w63p4" path="res://fonts/Pieces of Eight.ttf" id="2_0h7fj"]
+[ext_resource type="AudioStream" uid="uid://dxhb6mtqh3emf" path="res://music/main theme.mp3" id="3_svlh4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dmdyo"]
 font = ExtResource("2_0h7fj")
@@ -36,7 +37,7 @@ offset_left = 196.0
 offset_top = 155.0
 offset_right = 999.0
 offset_bottom = 392.0
-text = "Your host body has been captured and killed,
+text = "Your host body has died,
  taking you along with it.
 The world continues unaware of the chaos
 you would have unleashed."
@@ -63,6 +64,9 @@ offset_bottom = 557.0
 theme_override_fonts/font = ExtResource("2_0h7fj")
 theme_override_font_sizes/font_size = 35
 text = "Return to menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_svlh4")
 
 [connection signal="pressed" from="Panel/ReturnToGame" to="." method="_on_return_to_game_pressed"]
 [connection signal="pressed" from="Panel/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]

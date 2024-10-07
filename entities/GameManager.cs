@@ -11,6 +11,7 @@ public partial class GameManager : Node2D
 	private Label time_left;
 	private Label game_time_left;
 	private Timer gameTimeLeft;
+	private AudioStreamPlayer2D player;
 
 	[Export]
 	public TileMap cityMap;
@@ -22,7 +23,6 @@ public partial class GameManager : Node2D
 		time_left = GetNode<Camera2D>("Camera2D").GetNode<Panel>("Panel").GetNode<Label>("TimeLeft");
 		game_time_left = GetNode<Camera2D>("Camera2D").GetNode<Panel>("Panel").GetNode<Label>("GameTimeLeft");
 		gameTimeLeft = GetNode<Timer>("Timer");
-		GD.Print($"Camera not null? {camera != null}");
 		
 		Array<Node> children = GetChildren();
 		uint id = 0;
@@ -32,6 +32,7 @@ public partial class GameManager : Node2D
 				children[i].Name == "Camera2D" || 
 				children[i].Name == "CityMap" || 
 				children[i].Name == "Timer" ||
+				children[i].Name == "AudioStreamPlayer" ||
 				children[i].Name.ToString().Contains("NoGoZone")
 			) continue;
 			
@@ -50,6 +51,7 @@ public partial class GameManager : Node2D
 				children[i].Name == "Camera2D" || 
 				children[i].Name == "CityMap" || 
 				children[i].Name == "Timer" ||
+				children[i].Name == "AudioStreamPlayer" ||
 				children[i].Name.ToString().Contains("NoGoZone")
 			) continue;
 			

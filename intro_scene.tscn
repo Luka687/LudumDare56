@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://btvf565w41bp1"]
+[gd_scene load_steps=5 format=3 uid="uid://btvf565w41bp1"]
 
 [ext_resource type="Script" path="res://IntroScene.cs" id="1_0g6qa"]
 [ext_resource type="FontFile" uid="uid://njcc063w63p4" path="res://fonts/Pieces of Eight.ttf" id="1_cnpyq"]
+[ext_resource type="AudioStream" uid="uid://dr4uwjwq74q5e" path="res://music/GameplayTest.wav" id="3_8ohh8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_47w0l"]
 font = ExtResource("1_cnpyq")
@@ -15,6 +16,7 @@ offset_right = 1157.0
 offset_bottom = 652.0
 
 [node name="TextLabel" type="Label" parent="Panel"]
+layout_mode = 0
 offset_left = 146.0
 offset_top = 52.0
 offset_right = 1033.0
@@ -35,5 +37,9 @@ vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8ohh8")
+volume_db = -20.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
