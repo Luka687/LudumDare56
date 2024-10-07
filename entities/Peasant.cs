@@ -15,7 +15,7 @@ public partial class Peasant : Entity
 	private Timer timer;
 	private AnimatedSprite2D animPlayer;
 	private PeasantDir pDir; 
-	private float speed = 300.0f;
+	private float speed = 350.0f;
 	
 	public override void _Ready() 
 	{

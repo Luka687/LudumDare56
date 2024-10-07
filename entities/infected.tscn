@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cdiv86e0h20xa"]
+[gd_scene load_steps=28 format=3 uid="uid://cdiv86e0h20xa"]
 
 [ext_resource type="Script" path="res://entities/Infected.cs" id="1_3rgel"]
 [ext_resource type="Texture2D" uid="uid://uwyaak20sg6x" path="res://assets/down_walk_p.png" id="2_edasr"]
@@ -164,21 +164,32 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3rye"]
+size = Vector2(32.6667, 86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbc76"]
+size = Vector2(24.8, 41.6)
 
 [node name="Infected" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_3rgel")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-
 [node name="Timer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 20.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_op3it")
 animation = &"right_walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.333334, 10.3333)
 shape = SubResource("RectangleShape2D_a3rye")
 
+[node name="InfectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InfectArea"]
+position = Vector2(-1.66667, 9.33333)
+scale = Vector2(2.5, 2.5)
+shape = SubResource("RectangleShape2D_tbc76")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="InfectArea" to="." method="_on_infect_area_body_entered"]

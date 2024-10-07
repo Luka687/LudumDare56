@@ -16,7 +16,7 @@ public partial class Guard : Entity
 	private Timer timer;
 	private AnimatedSprite2D animPlayer;
 	private GuardDir gDir; 
-	private float speed = 350.0f;
+	private float speed = 300.0f;
 	
 	public override void _Ready() 
 	{

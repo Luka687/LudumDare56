@@ -14,6 +14,7 @@ public partial class Infected : Entity
 	
 	private Dictionary<Vector2, SpriteDir> dict;
 	private float speed = 700.0f;
+	private Area2D area2D;
 	
 	public GameManager manager;
 	public Timer timer;
@@ -28,7 +29,6 @@ public partial class Infected : Entity
 		dict[new Vector2(0.0f, 1.0f)] = SpriteDir.DOWN;
 		dict[new Vector2(0.0f, -1.0f)] = SpriteDir.UP;
 		
-		raycast = GetNode<RayCast2D>("RayCast2D");
 		manager = (GameManager)GetParent();
 		timer = GetNode<Timer>("Timer");
 		animPlayer = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
@@ -65,28 +65,9 @@ public partial class Infected : Entity
 			}			
 		}
 		
-		inSight();
-		
-		raycast.GlobalPosition = this.GlobalPosition;
-		raycast.TargetPosition = dir.Normalized()*25;
-		
 		vel = speed * dir;
 		Velocity = vel;
 		MoveAndSlide();	
-	}
-	
-	public void inSight() 
-	{
-		if (raycast.IsColliding()) 
-		{
-			Object o = raycast.GetCollider();
-			if (o is Peasant)
-			{
-				Entity e = (Entity) o;
-				QueueFree();
-				manager.infect(e.getId());
-			}
-		}
 	}
 	
 	public void kill(){
@@ -102,7 +83,22 @@ public partial class Infected : Entity
 	{
 		return timer.TimeLeft;
 	}
+	
+	public void callManager(uint _id)
+	{
+		manager.infect(_id);
+	}
+	
+	private void _on_infect_area_body_entered(Node2D body)
+	{
+		//GD.Print($"Is peasant: {body is Peasant}");
+		//if (body is Peasant && Input.IsKeyPressed(Key.E))
+		//{
+			//Entity e = (Entity) body;
+			//QueueFree();
+			//CallDeferred(nameof(callManager), e.getId());
+		//}
+		List<Node> bodies = 
+	}
+
 }
-
-
-
