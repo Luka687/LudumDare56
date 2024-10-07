@@ -1,3 +1,67 @@
-[gd_scene format=3 uid="uid://bs7pwv0cab6ld"]
+[gd_scene load_steps=5 format=3 uid="uid://bs7pwv0cab6ld"]
+
+[ext_resource type="Script" path="res://LoseScene.cs" id="1_qnqn2"]
+[ext_resource type="FontFile" uid="uid://njcc063w63p4" path="res://fonts/Pieces of Eight.ttf" id="2_0h7fj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dmdyo"]
+font = ExtResource("2_0h7fj")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_y4uxh"]
+font = ExtResource("2_0h7fj")
+font_size = 50
 
 [node name="LoseScene" type="Node2D"]
+script = ExtResource("1_qnqn2")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+offset_right = 1155.0
+offset_bottom = 650.0
+
+[node name="GameOverLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 49.0
+offset_right = 791.0
+offset_bottom = 139.0
+text = "Game over"
+label_settings = SubResource("LabelSettings_dmdyo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 161.0
+offset_right = 805.0
+offset_bottom = 338.0
+text = "Luka voli da jebe koze 
+i da slusa Desingera, 
+samana naroda"
+label_settings = SubResource("LabelSettings_y4uxh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnToGame" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 372.0
+offset_right = 732.0
+offset_bottom = 432.0
+theme_override_fonts/font = ExtResource("2_0h7fj")
+theme_override_font_sizes/font_size = 35
+text = "Return to infecting"
+
+[node name="ReturnToMenu" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 460.0
+offset_right = 690.0
+offset_bottom = 516.0
+theme_override_fonts/font = ExtResource("2_0h7fj")
+theme_override_font_sizes/font_size = 35
+text = "Return to menu"
+
+[connection signal="pressed" from="Panel/ReturnToGame" to="." method="_on_return_to_game_pressed"]
+[connection signal="pressed" from="Panel/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]

@@ -1,3 +1,67 @@
-[gd_scene format=3 uid="uid://dkul3wopsev2t"]
+[gd_scene load_steps=5 format=3 uid="uid://dkul3wopsev2t"]
+
+[ext_resource type="Script" path="res://WinScene.cs" id="1_u56gx"]
+[ext_resource type="FontFile" uid="uid://njcc063w63p4" path="res://fonts/Pieces of Eight.ttf" id="2_38yo2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qsxtl"]
+font = ExtResource("2_38yo2")
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_lhxfw"]
+font = ExtResource("2_38yo2")
+font_size = 50
 
 [node name="WinScene" type="Node2D"]
+script = ExtResource("1_u56gx")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+offset_right = 1157.0
+offset_bottom = 652.0
+
+[node name="CongratsLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 69.0
+offset_right = 877.0
+offset_bottom = 159.0
+text = "CONGRATS"
+label_settings = SubResource("LabelSettings_qsxtl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 188.0
+offset_right = 991.0
+offset_bottom = 365.0
+text = "You managed to survive... 
+A new day has come for you to
+infect everyone..."
+label_settings = SubResource("LabelSettings_lhxfw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnToGame" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 397.0
+offset_right = 682.0
+offset_bottom = 462.0
+theme_override_fonts/font = ExtResource("2_38yo2")
+theme_override_font_sizes/font_size = 50
+text = "Infect again"
+
+[node name="ReturnToMenu" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 485.0
+offset_right = 723.0
+offset_bottom = 550.0
+theme_override_fonts/font = ExtResource("2_38yo2")
+theme_override_font_sizes/font_size = 50
+text = "Return to menu"
+
+[connection signal="pressed" from="Panel/ReturnToGame" to="." method="_on_return_to_game_pressed"]
+[connection signal="pressed" from="Panel/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]
