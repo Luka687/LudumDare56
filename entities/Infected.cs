@@ -15,6 +15,7 @@ public partial class Infected : Entity
 	private Dictionary<Vector2, SpriteDir> dict;
 	private float speed = 700.0f;
 	private Area2D area2D;
+	private Label pressE;
 	private uint? idToInfect;
 	
 	public GameManager manager;
@@ -33,15 +34,17 @@ public partial class Infected : Entity
 		manager = (GameManager)GetParent();
 		timer = GetNode<Timer>("Timer");
 		animPlayer = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		pressE = GetNode<Label>("Label");
 		timer.Start();
-		GD.Print($"Timer null? {timer != null}");
-		GD.Print($"Manager null? {manager != null}");
-		GD.Print($"Raycast null? {raycast != null}");
-		GD.Print($"Animation player null? {animPlayer != null}");
+		GD.Print($"Timer not null? {timer != null}");
+		GD.Print($"Manager not null? {manager != null}");
+		GD.Print($"Raycast not null? {raycast != null}");
+		GD.Print($"Animation player not null? {animPlayer != null}");
+		GD.Print($"\'E\' label not null? {pressE != null}");
 	}
 	
 	public override void _PhysicsProcess(double delta) 
-	{
+	{	
 		Vector2 vel = Velocity;
 		Vector2 dir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down"); 
 		
@@ -66,14 +69,13 @@ public partial class Infected : Entity
 			}			
 		}
 		
-		if (Input.IsKeyPressed(Key.E)){
-			GD.Print("Can't Infect");
-			if(idToInfect != null){
+		if (Input.IsKeyPressed(Key.E)) {
+			if(idToInfect != null) {
 				GD.Print("INFECT");
 				manager.infect(idToInfect);
 				QueueFree();
 			}
-			else{
+			else {
 				GD.Print("Can't Infect");
 			}
 		}
@@ -98,7 +100,12 @@ public partial class Infected : Entity
 		return timer.TimeLeft;
 	}
 	
-	public void inInfectRange(uint? id){
+	public void inInfectRange(uint? id, bool canShow) {
+		if (pressE != null) {
+			pressE.Visible = canShow;
+		} else {
+			GD.Print("pressE is null!");
+		}
 		idToInfect = id;
 	}
 

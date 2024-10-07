@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://e4427y27mjib"]
+[gd_scene load_steps=5 format=3 uid="uid://e4427y27mjib"]
 
 [ext_resource type="Script" path="res://Menu.cs" id="1_kqmwy"]
 [ext_resource type="Texture2D" uid="uid://cn3v4w5ptipko" path="res://assets/Untitled.jpeg" id="2_6gjek"]
+[ext_resource type="FontFile" uid="uid://njcc063w63p4" path="res://fonts/Pieces of Eight.ttf" id="3_veavw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mng6j"]
 font_size = 30
@@ -40,6 +41,19 @@ offset_left = 726.0
 offset_top = 318.0
 offset_right = 960.0
 offset_bottom = 385.0
+theme_override_fonts/font = ExtResource("3_veavw")
+theme_override_font_sizes/font_size = 50
 text = "Play"
 
+[node name="ExitGame" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 727.0
+offset_top = 411.0
+offset_right = 961.0
+offset_bottom = 466.0
+theme_override_fonts/font = ExtResource("3_veavw")
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
 [connection signal="pressed" from="Panel/PlayGame" to="." method="_on_play_game_pressed"]
+[connection signal="pressed" from="Panel/ExitGame" to="." method="_on_exit_game_pressed"]
